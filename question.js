@@ -1,16 +1,32 @@
 class Question {
     question;
-    answers;
+    choices;
     isMultipleChoice;
-    choiceNums;
+    interests;
+    weights;
+    
 
     constructor(question, choices, isMultipleChoice) {
         this.question = question;
-        this.answers = choices;
+        this.choices = choices;
         this.isMultipleChoice = isMultipleChoice;
+        this.interests = array[choices.length];
+        this.weights = array[choices.length];
     }
 
-    selectedChoices(choiceNums) {
-        this.choiceNums = choiceNums;
+    setChoice(choiceNum, interest, weight) {
+        interests[choiceNum] = interest;
+        weights[choiceNum] = weight;
+    }
+
+    selectChoice(...choiceNums) {
+        if(this.isMultipleChoice) {
+            choiceNums.forEach(function(choiceNum, index) {
+                interests[index].weight += weights[index];
+            });
+        }
+        else {
+            interests[choiceNums[0]].weight += weights[choiceNums[0]];
+        }
     }
 }

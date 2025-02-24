@@ -25,9 +25,12 @@ let interest = {
   };
 
 let questions = {
-    1: new Question("Which of these do you prioritize", "creativity", false)
+    1: new Question("Which of these do you prioritize", ["creativity"], false)
 }
   
+{
+  questions[1].setChoice(0, interest.Impact, 0.2);
+}
 
 
 function takeQuiz() {
