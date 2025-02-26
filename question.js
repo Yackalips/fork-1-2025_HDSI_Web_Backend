@@ -15,8 +15,8 @@ class Question {
     }
 
     setChoice(choiceNum, interest, weight) {
-        interests[choiceNum] = interest;
-        weights[choiceNum] = weight;
+        interests[choiceNum].push(interest);
+        weights[choiceNum].push(weight);
     }
 
     selectChoice(...choiceNums) {
