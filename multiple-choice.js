@@ -1,36 +1,79 @@
 let interest = {
-    Creativity: { weight: 0.1 },
-    Adventure: { weight: 0.1 },
-    Innovation: { weight: 0.1 },
-    Exploration: { weight: 0.1 },
-    Connection: { weight: 0.1 },
-    Learning: { weight: 0.1 },
-    Expression: { weight: 0.1 },
-    Technology: { weight: 0.1 },
-    Strategy: { weight: 0.1 },
-    Culture: { weight: 0.1 },
-    Growth: { weight: 0.1 },
-    Leadership: { weight: 0.1 },
-    Challenge: { weight: 0.1 },
-    Community: { weight: 0.1 },
-    Fun: { weight: 0.1 },
-    Balance: { weight: 0.1 },
-    Socializing: { weight: 0.1 },
-    Collaboration: { weight: 0.1 },
-    Change: { weight: 0.1 },
-    ProblemSolving: { weight: 0.1 },
-    Impact: { weight: 0.1 },
-    Curiosity: { weight: 0.1 },
-    Happiness: { weight: 0.1 },
-  };
+  Creativity: {},
+  Adventure: {},
+  Innovation: {},
+  Exploration: {},
+  Connection: {},
+  Learning: {},
+  Expression: {},
+  Technology: {},
+  Strategy: {},
+  Culture: {},
+  Growth: {},
+  Leadership: {},
+  Challenge: {},
+  Community: {},
+  Fun: {},
+  Balance: {},
+  Socializing: {},
+  Collaboration: {},
+  Change: {},
+  ProblemSolving: {},
+  Impact: {},
+  Curiosity: {},
+  Happiness: {},
+  Sports: {},
+  Coding: {},
+  Art: {},
+  MentalHealth: {},
+  Math: {},
+  Science: {},
+  History: {},
+  Film: {},
+  Language: {},
+  Discussion: {},
+  Debate: {},
+  Politics: {},
+  Outdoors: {},
+
+
+};
+
+for(let key in interest) {
+  interest[key].weight = 0.1;
+}
 
 let questions = {
-    1: new Question("Which of these do you prioritize", ["creativity"], false)
+    1: new Question("Out of the following, select what you enjoy most in your free time", ["Spending time with nature", "Working on a project", "Hanging out with friends", "Playing sports"], false)
+      .setChoice(0, interest.Exploration, 0.4)
+      .setChoice(0, interest.Outdoors, 0.4)
+      .setChoice(1, interest.Innovation, 0.35)
+      .setChoice(1, interest.Creativity, 0.3)
+      .setChoice(1, interest.Learning, 0.25)
+      .setChoice(2, interest.Socializing, 0.4)
+      .setChoice(2, interest.Discussion, 0.1)
+      .setChoice(2, interest.Debate, 0.1)
+      .setChoice(2, interest.Expression, 0.15)
+      .setChoice(2, interest.Community, 0.3)
+      .setChoice(3, interest.Sports, 0.7)
+      .setChoice(3, interest.Outdoors, 0.5),
+    
+    2: new Question("What's your favorite way to collaborate with others?", ["Through discussions, debates, or brainstorming sessions", "Through teamwork in competitive sports or fitness challenges", "Through collaborative creative projects like painting or writing", "Through group activities like hiking, camping, or environmental cleanups"], false)
+      .setChoice(0, interest.Debate, 0.3)
+      .setChoice(0, interest.Discussion, 0.3)
+      .setChoice(0, interest.Community, 0.2)
+      .setChoice(1, interest.Sports, 0.3)
+      .setChoice(1, interest.Collaboration, 0.2)
+      .setChoice(1, interest.Outdoors, 0.1)
+      .setChoice(2, interest.Creativity, 0.35)
+      .setChoice(2, interest.Art, 0.3)
+      .setChoice(2, interest.Language, 0.25)
+      .setChoice(3, interest.Exploration, 0.45)
+      .setChoice(3, interest.Outdoors, 0.5)
+      .setChoice(3, interest.Community, 0.3),
+    
 }
   
-{
-  questions[1].setChoice(0, interest.Impact, 0.2);
-}
 
 
 function takeQuiz() {
