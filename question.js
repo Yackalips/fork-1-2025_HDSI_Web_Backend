@@ -1,5 +1,4 @@
-const { Console } = require('console');
-const { channel } = require('diagnostics_channel');
+
 const readline = require('readline');
 const userInput = readline.createInterface({
     input: process.stdin,
