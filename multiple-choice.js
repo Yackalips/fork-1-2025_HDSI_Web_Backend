@@ -35,8 +35,6 @@ let interest = {
   Debate: {},
   Politics: {},
   Outdoors: {},
-
-
 };
 
 for(let key in interest) {
@@ -80,6 +78,3 @@ function takeQuiz() {
     
 }
 
-function takeAIQuiz() {
-
-}

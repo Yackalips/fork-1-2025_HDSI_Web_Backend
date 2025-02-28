@@ -1,8 +1,18 @@
+const { Console } = require('console');
+const { channel } = require('diagnostics_channel');
+const readline = require('readline');
+const userInput = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+
 class Question {
+    chosenAnswer;
     question;
     choices;
     isMultipleChoice;
-    interests;
+    tags;
     weights;
     
 
@@ -10,23 +20,36 @@ class Question {
         this.question = question;
         this.choices = choices;
         this.isMultipleChoice = isMultipleChoice;
-        this.interests = array[choices.length];
+        this.tags = array[choices.length];
         this.weights = array[choices.length];
     }
 
-    setChoice(choiceNum, interest, weight) {
-        interests[choiceNum].push(interest);
+    setChoice(choiceNum, tag, weight) {
+        interests[choiceNum].push(tag);
         weights[choiceNum].push(weight);
     }
 
-    selectChoice(...choiceNums) {
-        if(this.isMultipleChoice) {
-            choiceNums.forEach(function(choiceNum, index) {
-                interests[index].weight += weights[index];
+
+    askQuestion() {
+        num = null;
+        while(!Number.isInteger(num) && (num < 0 && num >= this.choices.length)) {
+        userInput.question(question, (input) => {
+                num = input;
+                if(!Number.isInteger(num) && (num < 0 && num >= this.choices.length)) {
+                    console.log("Invalid answer");
+                }
+
             });
         }
-        else {
-            interests[choiceNums[0]].weight += weights[choiceNums[0]];
-        }
+        this.chosenAnswer = num;
+        
+    }
+
+    getTags() {
+        return tags[this.chosenAnswer];
+    }
+
+    getWeights() {
+        return weights[this.chosenAnswer];
     }
 }
