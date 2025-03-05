@@ -1,4 +1,6 @@
-let interest = {
+import { Question } from './question.js';
+
+export const interest = {
   Creativity: {},
   Adventure: {},
   Innovation: {},
@@ -41,7 +43,7 @@ for(let key in interest) {
   interest[key].weight = 0.1;
 }
 
-let questions = {
+export const questions = {
     1: new Question("Out of the following, select what you enjoy most in your free time", ["Spending time with nature", "Working on a project", "Hanging out with friends", "Playing sports"], false)
       .setChoice(0, interest.Exploration, 0.4)
       .setChoice(0, interest.Outdoors, 0.4)

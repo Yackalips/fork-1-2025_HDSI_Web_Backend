@@ -1,12 +1,12 @@
+import readline from 'readline';
 
-const readline = require('readline');
 const userInput = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
   
 
-class Question {
+export class Question {
     chosenAnswer;
     question;
     choices;
@@ -19,36 +19,43 @@ class Question {
         this.question = question;
         this.choices = choices;
         this.isMultipleChoice = isMultipleChoice;
-        this.tags = array[choices.length];
-        this.weights = array[choices.length];
+        this.tags = new Array(choices.length);
+        this.weights = new Array(choices.length);
     }
 
-    setChoice(choiceNum, tag, weight) {
-        interests[choiceNum].push(tag);
-        weights[choiceNum].push(weight);
+    setChoice(choiceNum, tags, weight) {
+        this.tags[choiceNum] = tags;
+        this.weights[choiceNum] = weight;
+        return this;
     }
 
 
     askQuestion() {
-        num = null;
-        while(!Number.isInteger(num) && (num < 0 && num >= this.choices.length)) {
-        userInput.question(question, (input) => {
-                num = input;
-                if(!Number.isInteger(num) && (num < 0 && num >= this.choices.length)) {
-                    console.log("Invalid answer");
-                }
-
-            });
-        }
-        this.chosenAnswer = num;
-        
+        let num = null; // Declare num properly inside the function
+        return new Promise((resolve) => {
+            const validateInput = () => {
+                userInput.question(this.question, (input) => {
+                    num = parseInt(input, 10);
+                    if (Number.isInteger(num) && num >= 0 && num < this.choices.length) {
+                        this.chosenAnswer = num;
+                        resolve(); // Resolve the promise when a valid answer is provided
+                    } else {
+                        console.log("Invalid answer, try again.");
+                        validateInput(); // Recursive call if input is invalid
+                    }
+                });
+            };
+            validateInput();
+        });
     }
+    
 
     getTags() {
-        return tags[this.chosenAnswer];
+        return this.tags[this.chosenAnswer];
     }
 
     getWeights() {
-        return weights[this.chosenAnswer];
+        return this.weights[this.chosenAnswer];
     }
 }
+
